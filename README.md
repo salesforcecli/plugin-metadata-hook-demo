@@ -2,11 +2,6 @@
 
 Demo using Salesforce CLI hooks to replace metadata values with an environment variable during a deploy.
 
-[![CircleCI](https://circleci.com/gh/salesforcecli/plugin-metadata-hook-demo/tree/master.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-metadata-hook-demo/tree/master)
-[![Codecov](https://codecov.io/gh/salesforcecli/plugin-metadata-hook-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/salesforcecli/plugin-metadata-hook-demo)
-[![Known Vulnerabilities](https://snyk.io/test/github/salesforcecli/plugin-metadata-hook-demo/badge.svg)](https://snyk.io/test/github/salesforcecli/plugin-metadata-hook-demo)
-[![License](https://img.shields.io/npm/l/plugin-metadata-hook-demo.svg)](https://github.com/salesforcecli/plugin-metadata-hook-demo/blob/master/package.json)
-
 ## Getting Started
 
 To use, install the [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli) and run the following commands.
