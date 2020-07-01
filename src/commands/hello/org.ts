@@ -1,5 +1,5 @@
 import { flags, SfdxCommand } from '@salesforce/command';
-import { Messages, SfdxError } from '@salesforce/core';
+import { Messages, SfdxError, Lifecycle } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
 
 // Initialize Messages with the current plugin directory
@@ -36,6 +36,8 @@ export default class Org extends SfdxCommand {
     })
   };
 
+  protected readonly lifecycleEventNames = ['postmdapiconvert'];
+
   // Comment this out if your command does not require an org username
   protected static requiresUsername = true;
 
@@ -47,6 +49,9 @@ export default class Org extends SfdxCommand {
 
   public async run(): Promise<AnyJson> {
     const name = this.flags.name || 'world';
+
+    console.log('hello');
+    Lifecycle.getInstance().emit('postmdapiconvert', name);
 
     // this.org is guaranteed because requiresUsername=true, as opposed to supportsUsername
     const conn = this.org!.getConnection();
