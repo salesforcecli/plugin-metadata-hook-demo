@@ -1,11 +1,11 @@
-# plugin-<REPLACE ME>
+# plugin-metadata-hook-demo
 
-This repository provides a template for creating a plugin for the Salesforce CLI. (<REPLACE ME>)
+Demo using Salesforce CLI hooks to replace metadata values with an environment variable during a deploy.
 
-[![CircleCI](https://circleci.com/gh/salesforcecli/plugin-<REPLACE ME>/tree/master.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-<REPLACE ME>/tree/master)
-[![Codecov](https://codecov.io/gh/salesforcecli/plugin-<REPLACE ME>/branch/master/graph/badge.svg)](https://codecov.io/gh/salesforcecli/plugin-<REPLACE ME>)
-[![Known Vulnerabilities](https://snyk.io/test/github/salesforcecli/plugin-<REPLACE ME>/badge.svg)](https://snyk.io/test/github/salesforcecli/plugin-<REPLACE ME>)
-[![License](https://img.shields.io/npm/l/plugin-<REPLACE ME>.svg)](https://github.com/salesforcecli/plugin-<REPLACE ME>/blob/master/package.json)
+[![CircleCI](https://circleci.com/gh/salesforcecli/plugin-metadata-hook-demo/tree/master.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-metadata-hook-demo/tree/master)
+[![Codecov](https://codecov.io/gh/salesforcecli/plugin-metadata-hook-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/salesforcecli/plugin-metadata-hook-demo)
+[![Known Vulnerabilities](https://snyk.io/test/github/salesforcecli/plugin-metadata-hook-demo/badge.svg)](https://snyk.io/test/github/salesforcecli/plugin-metadata-hook-demo)
+[![License](https://img.shields.io/npm/l/plugin-metadata-hook-demo.svg)](https://github.com/salesforcecli/plugin-metadata-hook-demo/blob/master/package.json)
 
 ## Getting Started
 
@@ -14,8 +14,8 @@ To use, install the [Salesforce CLI](https://developer.salesforce.com/tools/sfdx
 ```
 Verify the CLI is installed
   $ sfdx (-v | --version)
-Install the <REPLACE ME> plugin
-  $ sfdx plugins:install <REPLACE ME>
+Install the metadata-hook-demo plugin
+  $ sfdx plugins:install metadata-hook-demo
 To run a command
   $ sfdx [command]
 ```
@@ -24,7 +24,7 @@ To build the plugin locally, make sure to have yarn installed and run the follow
 
 ```
 Clone the repository
-  $ git clone git@github.com:salesforcecli/plugin-<REPLACE ME>
+  $ git clone git@github.com:salesforcecli/plugin-metadata-hook-demo
 Install the dependencies and compile
   $ yarn install
   $ yarn prepack

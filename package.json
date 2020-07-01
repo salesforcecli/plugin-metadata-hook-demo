@@ -1,9 +1,9 @@
 {
-  "name": "REPLACE_ME",
-  "description": "REPLACE_ME_DESCRIPTION",
+  "name": "plugin-metadata-hook-demo",
+  "description": "Demo using Salesforce CLI hooks to replace metadata values during a deploy.",
   "version": "48.8.0",
   "author": "Salesforce",
-  "bugs": "https://github.com/salesforcecli/plugin-<REPLACE ME>/issues",
+  "bugs": "https://github.com/salesforcecli/plugin-metadata-hook-demo/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -13,6 +13,7 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
     "mkdirp": "^0.5.1",
+    "salesforce-alm": "^48.20.0",
     "tslib": "^1",
     "yeoman-environment": "^2.4.0",
     "yeoman-generator": "^4.0.1"
@@ -54,7 +55,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/salesforcecli/plugin-<REPLACE ME>",
+  "homepage": "https://github.com/salesforcecli/plugin-metadata-hook-demo",
   "keywords": [
     "force",
     "salesforce",
@@ -75,9 +76,12 @@
       "hello": {
         "description": "Commands to say hello."
       }
+    },
+    "hooks": {
+      "postmdapideploy": "./lib/hooks/postmdapideploy/metadataReplace"
     }
   },
-  "repository": "salesforcecli/plugin-<REPLACE ME>",
+  "repository": "salesforcecli/plugin-metadata-hook-demo",
   "scripts": {
     "clean:lib": "shx rm -rf lib && shx rm -rf coverage && shx rm -rf .nyc_output && shx rm -f oclif.manifest.json",
     "compile": "tsc -b",

@@ -83,7 +83,7 @@ jobs:
 
 workflows:
   version: 2
-  'plugin-<REPLACE ME>':
+  'plugin-metadata-hook-demo':
     jobs:
       - node-latest
       - node-12
