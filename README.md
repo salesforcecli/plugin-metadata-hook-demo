@@ -2,6 +2,8 @@
 
 Demo using Salesforce CLI hooks to replace metadata values with an environment variable during a deploy.
 
+See the file src/hooks/metadataReplace.ts to view the hook code.
+
 ## Getting Started
 
 To use, install the [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli) and run the following commands.
