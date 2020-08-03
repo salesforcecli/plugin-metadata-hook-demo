@@ -26,7 +26,7 @@ Install the dependencies and compile
   $ yarn install
   $ yarn prepack
 Link your plugin to the sfdx cli
-  $ sfdx plugins:link .
+  $ sfdx plugins:link
 To verify
   $ sfdx plugins
 ```
