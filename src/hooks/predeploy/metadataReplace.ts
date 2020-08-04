@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import { Builder, parseString } from 'xml2js';
 import { Command, Hook } from '@oclif/config';
-import { Optional } from '@salesforce/ts-types';
 
 type HookFunction = (this: Hook.Context, options: HookOptions) => any;
 
@@ -9,7 +8,7 @@ type HookOptions = {
   Command: Command.Class,
   argv: string[],
   commandId: string,
-  result: Optional<PreDeployResult>
+  result?: PreDeployResult
 }
 
 type PreDeployResult = {
