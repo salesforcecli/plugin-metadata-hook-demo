@@ -1,8 +1,31 @@
-import { SourceHook } from 'salesforce-alm/dist/lib/source/sourceHooks';
 import * as fs from 'fs';
 import { Builder, parseString } from 'xml2js';
+import { Command, Hook } from '@oclif/config';
+import { Optional } from '@salesforce/ts-types';
 
-export const hook: SourceHook<'predeploy'> = async function (options) {
+type HookFunction = (this: Hook.Context, options: HookOptions) => any;
+
+type HookOptions = {
+  Command: Command.Class,
+  argv: string[],
+  commandId: string,
+  result: Optional<PreDeployResult>
+}
+
+type PreDeployResult = {
+  [aggregateName: string]: {
+    mdapiFilePath: string;
+    workspaceElements: {
+      fullName: string;
+      metadataName: string;
+      sourcePath: string;
+      state: string;
+      deleteSupported: boolean;
+    }[];
+  };
+};
+
+export const hook: HookFunction = async function (options) {
   console.log('Hook Running');
 
   // Run only on the push command, not the deploy command
