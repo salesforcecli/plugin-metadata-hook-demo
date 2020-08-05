@@ -4,6 +4,8 @@ Demo using Salesforce CLI hooks to replace metadata values with an environment v
 
 See the file src/hooks/predeploy/metadataReplace.ts to view the hook code.
 
+To use this demo: build and link the plugin and then push or pull custom object metadata files. Their description fields will be updated to maintain a different description between local and remote obejcts.
+
 ## Getting Started
 
 To use, install the [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli) and run the following commands.
