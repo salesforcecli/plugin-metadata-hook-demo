@@ -62,7 +62,8 @@
       }
     },
     "hooks": {
-      "predeploy": "./lib/hooks/predeploy/metadataReplace"
+      "predeploy": "./lib/hooks/predeploy/metadataReplaceDeploy",
+      "postretrieve": "./lib/hooks/postretrieve/metadataReplaceRetrieve"
     }
   },
   "repository": "salesforcecli/plugin-metadata-hook-demo",
