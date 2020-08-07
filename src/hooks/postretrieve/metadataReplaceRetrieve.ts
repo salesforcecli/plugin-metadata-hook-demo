@@ -18,7 +18,7 @@ type PostRetrieveResult = {
   };
 };
 
-export const hook: HookFunction = async function(options) {
+export const hook: HookFunction = async function (options) {
   console.log('PostRetrieve Hook Running');
 
   // Run only on the pull command, not the retrieve command
@@ -35,7 +35,6 @@ export const hook: HookFunction = async function(options) {
       );
     }
   }
-  console.log('Done2');
 };
 // };
 
@@ -72,7 +71,6 @@ async function retainObjectDescription(objectName: string, objectPath: string) {
   if (localJson.CustomObject && localJson.CustomObject.description) {
     localDescription = localJson.CustomObject.description;
   }
-  console.log('Local description is ' + localDescription);
 
   // Update the incoming Metadata's description
   const incomingXml = await fs.readFile(objectPath, 'utf-8');
@@ -84,7 +82,6 @@ async function retainObjectDescription(objectName: string, objectPath: string) {
   );
 
   // Replace the description of the object being pulled with the value of the current description
-  console.log('Local description 2 is ' + localDescription);
   if (
     incomingJson.CustomObject &&
     incomingJson.CustomObject.description &&
@@ -95,8 +92,5 @@ async function retainObjectDescription(objectName: string, objectPath: string) {
 
   const xml = new Builder().buildObject(incomingJson);
 
-  console.log('Object path is ' + objectPath);
   await fs.writeFile(objectPath, xml, 'utf-8');
-
-  console.log('Done1');
 }
