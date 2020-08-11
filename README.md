@@ -62,7 +62,7 @@ $ NODE_OPTIONS=--inspect-brk bin/run hello:org -u myOrg@example.com
    
 ## About the Predeploy Hook Example
 
-The example for creating a `predeploy` Salesforce CLI hook shows how to replace the description of a metadata type with the value of an environment variable. The hook runs only when pushing files to an org with the `force:source:push` command.  See the [metadataReplace.ts](./blob/master/src/hooks/predeploy/metadataReplace.ts) TypeScript file for the code described in this section so you can follow along. The process to create a hook is similar to the [oclif](https://oclif.io/docs/hooks) process. 
+The example for creating a `predeploy` Salesforce CLI hook shows how to replace the description of a metadata type with the value of an environment variable. The hook runs only when pushing files to an org with the `force:source:push` command.  See the [metadataReplace.ts](src/hooks/predeploy/metadataReplaceDeploy.ts ) TypeScript file for the code described in this section so you can follow along. The process to create a hook is similar to the [oclif](https://oclif.io/docs/hooks) process. 
 
 Import the `Hook` and `Command` classes. 
 
