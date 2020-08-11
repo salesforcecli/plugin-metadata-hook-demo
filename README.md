@@ -62,7 +62,7 @@ $ NODE_OPTIONS=--inspect-brk bin/run hello:org -u myOrg@example.com
    
 ## About the Predeploy Hook Example
 
-The example for creating a `predeploy` Salesforce CLI hook shows how to replace the description of a metadata type with the value of an environment variable. The hook runs only when pushing files to an org with the `force:source:push` command.  See the [metadataReplace.ts](./src/hooks/predeploy/metadataReplace.ts) TypeScript file for the code described in this section so you can follow along. The process to create a hook is similar to the [oclif](https://oclif.io/docs/hooks) process. 
+The example for creating a `predeploy` Salesforce CLI hook shows how to replace the description of a metadata type with the value of an environment variable. The hook runs only when pushing files to an org with the `force:source:push` command.  See the [metadataReplace.ts](./blob/master/src/hooks/predeploy/metadataReplace.ts) TypeScript file for the code described in this section so you can follow along. The process to create a hook is similar to the [oclif](https://oclif.io/docs/hooks) process. 
 
 Import the `Hook` and `Command` classes. 
 
@@ -103,14 +103,14 @@ The `HookOptions` type contains the values that are returned after the hook fire
 * `commandId`: The CLI command that ran, such as `force:source:push`. 
 * `result`: An object that contains information about what just happened. 
 
-The `PreDeployResult` type describes the result object for a `predeploy` hook. Each hook type [returns a different `result` type](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_customize.htm). For example, the `postdeploy` hook fires immediately after metadata files are deployed to the org. It returns the number of metadata components that were deployed, the number that generated errors, and component information for each success, such as its full name and type. 
+The `PreDeployResult` type describes the result object for a `predeploy` hook. Each hook type [returns a different `result` type](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_customize.htm). For example, the `predeploy` hook fires after the CLI converts your source files to Metadata API format but before it sends the files to the org. It returns an array of the converted metadata types and the associated source format files. 
 
 Most of the property names of the various result types describe themselves, such as `PostOrgCreateResult.expirationDate` and `PreRetrieveResult.packageXmlPath`. But a quick word about the `aggregateName` and `workspaceElements` properties:
 
 * `aggregateName` refers to a single representation in metadata format of, for example, a custom object.   
 * `workspaceElements` is an array of source format files for the same custom object, each file describing the associated fields, layouts, and so on. 
 
-Use these returned values in your code to implement your logic. For example, this code finds out the CLI command fired the hook:
+Use these returned values in your code to implement your logic. For example, this code checks for the CLI command that fired the hook:
 
 ```
     if (options.commandId === 'force:source:push') {
