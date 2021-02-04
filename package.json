@@ -78,8 +78,10 @@
     "prepack": "yarn run build && oclif-dev manifest",
     "reformat": "prettier --config .prettierrc --write './*.{js,json,md}' './**/*.{ts,json,md}'",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
-    "posttest": "yarn lint",
-    "version": "oclif-dev readme && git add README.md"
+    "posttest": "yarn lint && yarn test:deprecation-policy && yarn test:command-reference",
+    "version": "oclif-dev readme && git add README.md",
+    "test:deprecation-policy": "./bin/run snapshot:compare",
+    "test:command-reference": "./bin/run commandreference:generate --erroronwarnings"
   },
   "husky": {
     "hooks": {
