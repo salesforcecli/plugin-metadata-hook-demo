@@ -1,5 +1,7 @@
 # plugin-metadata-hook-demo
 
+[![NPM](https://img.shields.io/npm/v/plugin-metadata-hook-demo.svg?label=plugin-metadata-hook-demo)](https://www.npmjs.com/package/plugin-metadata-hook-demo) [![CircleCI](https://circleci.com/gh/salesforcecli/plugin-metadata-hook-demo/tree/master.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-metadata-hook-demo/tree/master) [![Downloads/week](https://img.shields.io/npm/dw/plugin-metadata-hook-demo.svg)](https://npmjs.org/package/plugin-metadata-hook-demo) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-metadata-hook-demo/master/LICENSE.txt)
+
 Demo using Salesforce CLI hooks to replace metadata values with an environment variable during a deploy.
 
 See the file src/hooks/predeploy/metadataReplace.ts to view the hook code.
