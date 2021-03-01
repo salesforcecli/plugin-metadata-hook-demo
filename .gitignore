@@ -30,12 +30,24 @@ docs
 *.sig
 package.json.bak.
 
+# Webstorm
+.idea
+
+# no keys
+*.key
+
+
 # -- CLEAN ALL
 node_modules
 
 # --
 # put files here you don't want cleaned with sf-clean
 
+
 # os specific files
 .DS_Store
 .idea
+
+# ignore oclif manifest file
+oclif.manifest.json
+
