@@ -9,7 +9,7 @@
     "@salesforce/command": "^2.2.0",
     "@salesforce/core": "^2.6.0",
     "@types/xml2js": "^0.4.5",
-    "husky": "^4.2.5",
+    "husky": "^5.1.2",
     "lint-staged": "^10.2.2",
     "salesforce-alm": "^48.20.0",
     "tslib": "^1",
