@@ -24,7 +24,7 @@
     "@types/chai": "^4",
     "chai": "^4",
     "eslint": "6.6.0",
-    "eslint-config-prettier": "6.5.0",
+    "eslint-config-prettier": "6.15.0",
     "mocha": "^5",
     "nyc": "15.0.1",
     "prettier": "1.16.4",
