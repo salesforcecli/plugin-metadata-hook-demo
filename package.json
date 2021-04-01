@@ -11,7 +11,7 @@
     "@types/xml2js": "^0.4.5",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
-    "salesforce-alm": "^48.20.0",
+    "salesforce-alm": "^51.6.7",
     "tslib": "^1",
     "xml2js": "^0.4.23"
   },
