@@ -1,6 +1,7 @@
 import { Command, Hook } from '@oclif/config';
 import * as fs from 'fs';
 import { Builder, parseString } from 'xml2js';
+import {SourceComponent} from '@salesforce/source-deploy-retrieve';
 
 // tslint:disable-next-line:no-any
 type HookFunction = (this: Hook.Context, options: HookOptions) => any;
@@ -9,43 +10,25 @@ type HookOptions = {
   Command: Command.Class;
   argv: string[];
   commandId: string;
-  result?: PreDeployResult;
-};
-
-type PreDeployResult = {
-  [aggregateName: string]: {
-    mdapiFilePath: string;
-    workspaceElements: {
-      fullName: string;
-      metadataName: string;
-      sourcePath: string;
-      state: string;
-      deleteSupported: boolean;
-    }[];
-  };
+  result: SourceComponent[];
 };
 
 export const hook: HookFunction = async options => {
   console.log('PreDepoy Hook Running');
 
   if (options.result) {
-    Object.keys(options.result).forEach(mdapiElementName => {
-      console.log('Updating the ' + mdapiElementName + ' object');
-      const mdapiElement = options.result![mdapiElementName]!;
+    options.result.forEach(component => {
+      console.log('Updating the ' + component.name + ' object');
 
       // Update the object in the org (the metadata that is being deployed)
-      updateObjectDescription(mdapiElement.mdapiFilePath);
-
-      // Update the object locally
-      updateObjectDescription(mdapiElement.workspaceElements[0].sourcePath);
+      updateObjectDescription(component.xml!);
     });
   }
 };
 
 
 function updateObjectDescription(objectPath: string) {
-  fs.readFile(objectPath, 'utf-8', (err, data) => {
-    if (err) throw err;
+  const data = fs.readFileSync(objectPath).toString('utf-8');
 
     if (data) {
       parseString(data, (error, json) => {
@@ -59,8 +42,7 @@ function updateObjectDescription(objectPath: string) {
 
         const xml = new Builder().buildObject(json);
 
-        fs.writeFile(objectPath, xml, () => {});
+        fs.writeFileSync(objectPath, xml);
       });
     }
-  });
 }
