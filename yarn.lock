@@ -421,10 +421,10 @@
     mkdirp "1.0.4"
     sfdx-faye "^1.0.9"
 
-"@salesforce/core@^2.15.2", "@salesforce/core@^2.16.3", "@salesforce/core@^2.2.0", "@salesforce/core@^2.20.1", "@salesforce/core@^2.20.10", "@salesforce/core@^2.6.0":
-  version "2.23.0"
-  resolved "https://registry.yarnpkg.com/@salesforce/core/-/core-2.23.0.tgz#14b95cb82b800625a889bc8ff0e8051d51de4404"
-  integrity sha512-OtVtArg2DSuEyBV467L3t9a33QitVqPtLhhYMBzfhNBkrwK+YcFV342QDcT6HrM6ZvtyAMPUWa8c0IIRWrB9Og==
+"@salesforce/core@^2.15.2", "@salesforce/core@^2.16.3", "@salesforce/core@^2.2.0", "@salesforce/core@^2.20.1", "@salesforce/core@^2.23.1", "@salesforce/core@^2.6.0":
+  version "2.23.1"
+  resolved "https://registry.yarnpkg.com/@salesforce/core/-/core-2.23.1.tgz#0a489cfba0ba3318ad760f38587389404e79c2f2"
+  integrity sha512-qANGCrOxk1+BXIfniMLUfZcgCZmRid0k+jLSWcQsg5gziG79nwzntZs+AxqniyhiK00X1qmtKaA7H6n7gTD3qA==
   dependencies:
     "@salesforce/bunyan" "^2.0.0"
     "@salesforce/kit" "^1.5.0"
