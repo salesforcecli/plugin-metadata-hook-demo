@@ -37,15 +37,15 @@ To verify
 
 ## About the Predeploy Hook TypeScript Code
 
-The example for creating a `predeploy` Salesforce CLI hook shows how to replace the description of a metadata type with the value of an environment variable. The hook runs only when pushing files to an org with the `force:source:push` command.  See the [metadataReplace.ts](src/hooks/predeploy/metadataReplaceDeploy.ts ) TypeScript file for the code described in this section so you can follow along. The process to create a hook is similar to the [oclif](https://oclif.io/docs/hooks) process. 
+The example for creating a `predeploy` Salesforce CLI hook shows how to replace the description of a metadata type with the value of an environment variable. The hook runs only when pushing files to an org with the `force:source:push` command. See the [metadataReplace.ts](src/hooks/predeploy/metadataReplaceDeploy.ts) TypeScript file for the code described in this section so you can follow along. The process to create a hook is similar to the [oclif](https://oclif.io/docs/hooks) process.
 
-Import the `Hook` and `Command` classes. 
+Import the `Hook` and `Command` classes.
 
 ```
 import { Command, Hook } from '@oclif/config';
 ```
 
-Then declare the types you use in your code. 
+Then declare the types you use in your code.
 
 ```
 type HookFunction = (this: Hook.Context, options: HookOptions) => any;
@@ -73,17 +73,17 @@ type PreDeployResult = {
 
 The `HookOptions` type contains the values that are returned after the hook fires:
 
-* `Command`: The class name of the command that ran, such as `PushCommand`.
-* `argv`: String array of the arguments that were passed to the command, such as `-m ApexClass` or `-o`.
-* `commandId`: The CLI command that ran, such as `force:source:push`. 
-* `result`: An object that contains information about what just happened. 
+- `Command`: The class name of the command that ran, such as `PushCommand`.
+- `argv`: String array of the arguments that were passed to the command, such as `-m ApexClass` or `-o`.
+- `commandId`: The CLI command that ran, such as `force:source:push`.
+- `result`: An object that contains information about what just happened.
 
-The `PreDeployResult` type describes the result object for a `predeploy` hook. Each hook type [returns a different `result` type](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_customize.htm). For example, the `predeploy` hook fires after the CLI converts your source files to Metadata API format but before it sends the files to the org. It returns an array of the converted metadata types and the associated source format files. 
+The `PreDeployResult` type describes the result object for a `predeploy` hook. Each hook type [returns a different `result` type](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_customize.htm). For example, the `predeploy` hook fires after the CLI converts your source files to Metadata API format but before it sends the files to the org. It returns an array of the converted metadata types and the associated source format files.
 
 Most of the property names of the various result types describe themselves, such as `PostOrgCreateResult.expirationDate` and `PreRetrieveResult.packageXmlPath`. But a quick word about the `aggregateName` and `workspaceElements` properties:
 
-* `aggregateName` refers to a single representation in metadata format of, for example, a custom object.   
-* `workspaceElements` is an array of source format files for the same custom object, each file describing the associated fields, layouts, and so on. 
+- `aggregateName` refers to a single representation in metadata format of, for example, a custom object.
+- `workspaceElements` is an array of source format files for the same custom object, each file describing the associated fields, layouts, and so on.
 
 Use these returned values in your code to implement your logic. For example, this code checks for the CLI command that fired the hook:
 
@@ -135,6 +135,3 @@ $ NODE_OPTIONS=--inspect-brk bin/run hello:org -u myOrg@example.com
 6. Hit the green play button at the top middle of VS Code (this play button will be to the right of the play button that you clicked in step #5).
    <br><img src=".images/vscodeScreenshot.png" width="480" height="278"><br>
    Congrats, you are debugging!
-   
-   
-

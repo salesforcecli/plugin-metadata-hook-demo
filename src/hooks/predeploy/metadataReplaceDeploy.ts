@@ -25,11 +25,11 @@ type PreDeployResult = {
   };
 };
 
-export const hook: HookFunction = async options => {
+export const hook: HookFunction = async (options) => {
   console.log('PreDepoy Hook Running');
 
   if (options.result) {
-    Object.keys(options.result).forEach(mdapiElementName => {
+    Object.keys(options.result).forEach((mdapiElementName) => {
       console.log('Updating the ' + mdapiElementName + ' object');
       const mdapiElement = options.result![mdapiElementName]!;
 
@@ -41,7 +41,6 @@ export const hook: HookFunction = async options => {
     });
   }
 };
-
 
 function updateObjectDescription(objectPath: string) {
   fs.readFile(objectPath, 'utf-8', (err, data) => {
