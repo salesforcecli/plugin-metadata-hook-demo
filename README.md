@@ -2,11 +2,12 @@
 
 [![NPM](https://img.shields.io/npm/v/plugin-metadata-hook-demo.svg?label=plugin-metadata-hook-demo)](https://www.npmjs.com/package/plugin-metadata-hook-demo) [![CircleCI](https://circleci.com/gh/salesforcecli/plugin-metadata-hook-demo/tree/master.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-metadata-hook-demo/tree/master) [![Downloads/week](https://img.shields.io/npm/dw/plugin-metadata-hook-demo.svg)](https://npmjs.org/package/plugin-metadata-hook-demo) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-metadata-hook-demo/master/LICENSE.txt)
 
-Demo using Salesforce CLI hooks to replace metadata values with an environment variable during a deploy.
+Demo using Salesforce CLI hooks to replace metadata values with an environment variable before a deploy and after a retrieve.
 
-See the file src/hooks/predeploy/metadataReplace.ts to view the hook code.
+See [metadataReplaceDeploy.ts](./src/hooks/predeploy/metadataReplaceDeploy.ts) for the sample predeploy hook code.
+See [metadataReplaceRetrieve.ts](./src/hooks/postretrieve/metadataReplaceRetrieve.ts) for the sample postretrieve hook code.
 
-To use this demo: build and link the plugin and then push or pull custom object metadata files. Their description fields will be updated to maintain a different description between local and remote obejcts.
+To use this demo: build and link the plugin and then deploy/push or retrieve/pull custom object metadata files. Their description fields will be updated to maintain a different description between local and remote obejcts.
 
 ## Getting Started
 
@@ -37,78 +38,7 @@ To verify
 
 ## About the Predeploy Hook TypeScript Code
 
-The example for creating a `predeploy` Salesforce CLI hook shows how to replace the description of a metadata type with the value of an environment variable. The hook runs only when pushing files to an org with the `force:source:push` command. See the [metadataReplace.ts](src/hooks/predeploy/metadataReplaceDeploy.ts) TypeScript file for the code described in this section so you can follow along. The process to create a hook is similar to the [oclif](https://oclif.io/docs/hooks) process.
-
-Import the `Hook` and `Command` classes.
-
-```
-import { Command, Hook } from '@oclif/config';
-```
-
-Then declare the types you use in your code.
-
-```
-type HookFunction = (this: Hook.Context, options: HookOptions) => any;
-
-type HookOptions = {
-  Command: Command.Class,
-  argv: string[],
-  commandId: string,
-  result?: PreDeployResult
-}
-
-type PreDeployResult = {
-  [aggregateName: string]: {
-    mdapiFilePath: string;
-    workspaceElements: {
-      fullName: string;
-      metadataName: string;
-      sourcePath: string;
-      state: string;
-      deleteSupported: boolean;
-    }[];
-  };
-};
-```
-
-The `HookOptions` type contains the values that are returned after the hook fires:
-
-- `Command`: The class name of the command that ran, such as `PushCommand`.
-- `argv`: String array of the arguments that were passed to the command, such as `-m ApexClass` or `-o`.
-- `commandId`: The CLI command that ran, such as `force:source:push`.
-- `result`: An object that contains information about what just happened.
-
-The `PreDeployResult` type describes the result object for a `predeploy` hook. Each hook type [returns a different `result` type](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_customize.htm). For example, the `predeploy` hook fires after the CLI converts your source files to Metadata API format but before it sends the files to the org. It returns an array of the converted metadata types and the associated source format files.
-
-Most of the property names of the various result types describe themselves, such as `PostOrgCreateResult.expirationDate` and `PreRetrieveResult.packageXmlPath`. But a quick word about the `aggregateName` and `workspaceElements` properties:
-
-- `aggregateName` refers to a single representation in metadata format of, for example, a custom object.
-- `workspaceElements` is an array of source format files for the same custom object, each file describing the associated fields, layouts, and so on.
-
-Use these returned values in your code to implement your logic. For example, this code checks for the CLI command that fired the hook:
-
-```
-    if (options.commandId === 'force:source:push') {
-```
-
-This code iterates through the `result` and executes the `updateObjectDesription` function on each element to update the description of both the object in the org and the local source file:
-
-```
-    if (options.result) {
-      Object.keys(options.result).forEach(mdapiElementName => {
-        console.log('Updating the ' + mdapiElementName + ' object');
-        let mdapiElement = options.result![mdapiElementName]!;
-
-        // Update the object in the org (the metadata that is being deployed)
-        updateObjectDescription(mdapiElement.mdapiFilePath);
-
-        // Update the object locally
-        updateObjectDescription(mdapiElement.workspaceElements[0].sourcePath);
-      });
-    }
-  }
-};
-```
+The example for creating a `predeploy` Salesforce CLI hook shows how to replace the description of a CustomObject with the value of an environment variable. The hook runs only when deploying files to an org with `force:source:deploy`, `force:source:push`, or `force:source:delete` commands. See the [metadataReplaceDeploy.ts](./src/hooks/predeploy/metadataReplaceDeploy.ts) TypeScript file for the code described in this section so you can follow along. The process to create a hook is similar to the [oclif](https://oclif.io/docs/hooks) process.
 
 ## Debugging your plugin
 
